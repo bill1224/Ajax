@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">  
+  <title>Document</title>
+</head>
+<article></article>
+<body>
+  <!-- .then 서버응답시간 동안 다른일을 하는 기능  -->
+  <input type="button" value="fetch" onclick="
+   /*
+      response.text().then(function(text){
+        document.querySelector('article').innerHTML =text;
+      })
+    });
+    */
+    // Asynchronous (비동기)  -> fetch가 실행되고 있는 동안에 다른 코드들이 실행되는 (동시에 실행되는 ,병렬적인 ) 
+    // synchronous (동기) -> 요청이 시작되고 끝날떄까지 코드가 실행되면 안되고 멈춰있어야함
+    
+    //fetch API는 then 에 콜백함수를 주게되면  fetch가 콜백함수를 실행시킬때 저 함수에 첫번째 인자의 값을로 response객채인 인자값을 줍니다.
+    fetch('ja').then(function(response){
+      //response 객채에서 status 값이 200인 것은 파일이 존재한다는 의미
+                                   //404인 것은 파일이 없다는 의미
+      console.log(response.status);
+      if(response.status =='404'){
+        alert('not file');
+      }
+    });
+    console.log(1);
+    console.log(2);
+    ">
+</body>
+</html>

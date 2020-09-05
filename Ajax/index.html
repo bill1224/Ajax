@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <h1><a href="index.html">WEB</a></h1>
+
+  <ol>
+    <!-- #! = 해쉬뱅이라고 부른다  -->
+    <li><a href="#!html" onclick="fetchPage('html')">HTML</a></li>
+    <li><a href="#!css" onclick="fetchPage('css')">CSS</a></li>
+    <li><a href="#!javascript" onclick="fetchPage('javascript')">JAVASCRIPT</a></li>
+  </ol>
+</body>
+    <article></article>
+    <script>
+      function fetchPage(name){
+        fetch(name).then(function(response){
+        response.text().then(function(text){
+        document.querySelector('article').innerHTML =text;
+        })
+      });
+      }
+
+      if(location.hash){
+        fetchPage(location.hash.substr(2));
+      } else {
+        fetchPage('welcome');
+      }
+    
+    </script>
+</html>
+ <!-- 해쉬뱅을 이용한 페이지 불러오기 방식의 문제점
+      검색엔진에 검색이 되지 않는다. -> 따라서 사용되지 않음
+     그것을 보완해주는게 pjax 다  -->
