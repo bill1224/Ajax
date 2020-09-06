@@ -6,11 +6,9 @@
 <body>
   <h1><a href="index.html">WEB</a></h1>
 
-  <ol>
+  <ol id="nav">
     <!-- #! = 해쉬뱅이라고 부른다  -->
-    <li><a href="#!html" onclick="fetchPage('html')">HTML</a></li>
-    <li><a href="#!css" onclick="fetchPage('css')">CSS</a></li>
-    <li><a href="#!javascript" onclick="fetchPage('javascript')">JAVASCRIPT</a></li>
+    
   </ol>
 </body>
     <article></article>
@@ -28,7 +26,26 @@
       } else {
         fetchPage('welcome');
       }
-    
+      
+      fetch('list').then(function(response){
+      response.text().then(function(text){
+        //<li><a href="#!html" onclick="fetchPage('html')">HTML</a></li>
+        console.log(text);
+        // split(',');는  ',' 문자를 기준으로 string을 나눠서 배열로 만들어준다.  php 에서 explode랑 동일함
+        var items = text.split(',');
+        var tags = '';
+        var i = 0;
+      while(i<items.length){
+        var item = items[i];
+        item = item.trim();
+        var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>'
+        var tags = tags + tag;
+        i += 1;
+      }
+      document.querySelector('#nav').innerHTML =tags;
+      
+        })
+      });
     </script>
 </html>
  <!-- 해쉬뱅을 이용한 페이지 불러오기 방식의 문제점
